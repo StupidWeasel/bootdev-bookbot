@@ -1,5 +1,8 @@
-#bookbot shit
+#bookbot stuff
 books/
+
+#Docker
+Dockerfile
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
