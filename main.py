@@ -25,15 +25,15 @@ def book_report(book_path):
 	chars = sorted(list(char_count(book, lambda c: c.isalpha()).items()), key=lambda x: -x[1])
 
 
-	print (f'''--- Begin boot.dev book report of {book_path} ---
+	print (f'''--- Begin report of {book_path[2:]} ---
 
-    {words} total words found in the book.
+    {words} total words found in the document.
 ''')
 
 	for char in chars:
 		print (f"    The '{char[0]}' character was found {char[1]} times")
 
-	print("\n--- End boot.dev book report. May I go outside and play now? ---")
+	print("\n--- End report ---\n--- May I go outside and play now? ---")
 
 def main():
 
