@@ -1,15 +1,6 @@
 #!/usr/bin/python3
 
-def word_count(text):
-	return len(text.split())
-
-def char_count(text, filter=False):
-	results = {}
-	for c in text.lower():
-		if not filter or (filter and filter(c)):
-			results[c] = results.get(c, 0)+1
-
-	return results
+from stats import word_count, char_count
 
 def book_text(target):
 	with open(target) as f:
@@ -27,7 +18,7 @@ def book_report(book_path):
 
 	print (f'''--- Begin report of {book_path[2:]} ---
 
-    {words} total words found in the document.
+    {words} words found in the document.
 ''')
 
 	for char in chars:
