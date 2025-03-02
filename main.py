@@ -1,5 +1,7 @@
 #!/usr/bin/python3
 
+import sys
+from pathlib import Path
 from stats import word_count, char_count
 
 def book_text(target):
@@ -12,22 +14,31 @@ def test(x):
 
 def book_report(book_path):
 	book = book_text(book_path)
+	book_name = book_path.name
 	words = word_count(book)
 	chars = sorted(list(char_count(book, lambda c: c.isalpha()).items()), key=lambda x: -x[1])
-
-
-	print (f'''--- Begin report of {book_path[2:]} ---
+	print (f'''--- Begin report of {book_name} ---
 
     {words} words found in the document.
 ''')
 
 	for char in chars:
-		print (f"    The '{char[0]}' character was found {char[1]} times")
+		print (f"    Found {char[0]}: {char[1]} times")
 
 	print("\n--- End report ---\n--- May I go outside and play now? ---")
 
 def main():
 
-	book_report("./books/frankenstein.txt")
+    if len(sys.argv) != 2:
+        print(f"Usage: {sys.argv[0]} <path_to_book>")
+        sys.exit(1)
+
+    book_path = Path(sys.argv[1])
+
+    if not (book_path.exists() or book_path.is_file()):
+        print("That is not a valid file.")
+        sys.exit(1)
+
+    book_report(book_path)
 
 main()
